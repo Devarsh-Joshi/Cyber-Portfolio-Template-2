@@ -1,0 +1,146 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: 'Space Grotesk', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-body: 'Inter', sans-serif;
+
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 6px;
+}
+
+:root {
+  /* Dark Cyberpunk Theme Base */
+  --background: 220 40% 2%;  /* Almost black blue */
+  --foreground: 180 20% 90%; /* Off-white cyan tint */
+
+  --card: 220 35% 4%;
+  --card-foreground: 180 20% 90%;
+
+  --popover: 220 35% 4%;
+  --popover-foreground: 180 20% 90%;
+
+  /* Neon Cyan Primary */
+  --primary: 180 100% 50%;
+  --primary-foreground: 220 40% 2%;
+
+  /* Darker Secondary */
+  --secondary: 215 25% 15%;
+  --secondary-foreground: 180 100% 50%;
+
+  --muted: 215 25% 15%;
+  --muted-foreground: 215 20% 65%;
+
+  /* Neon Green/Purple Accent */
+  --accent: 280 100% 60%;
+  --accent-foreground: 210 40% 98%;
+
+  --destructive: 0 85% 60%;
+  --destructive-foreground: 210 40% 98%;
+
+  --border: 215 25% 15%;
+  --input: 215 25% 15%;
+  --ring: 180 100% 50%;
+
+  --radius: 0.25rem;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  * {
+    @apply border-border;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+  body {
+    @apply font-body antialiased bg-background text-foreground selection:bg-primary/30 selection:text-primary;
+    background-image: 
+      linear-gradient(rgba(5, 10, 20, 0.95), rgba(5, 10, 20, 0.9)),
+      url('/src/assets/hero-bg.png');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+  }
+}
+
+@layer utilities {
+  .text-glow {
+    text-shadow: 0 0 10px hsl(var(--primary) / 0.5), 0 0 20px hsl(var(--primary) / 0.3);
+  }
+  
+  .border-glow {
+    box-shadow: 0 0 10px hsl(var(--primary) / 0.3);
+  }
+
+  .glitch-effect {
+    position: relative;
+  }
+  
+  .glass-panel {
+    @apply bg-background/60 backdrop-blur-md border border-white/5;
+  }
+  
+  .scanline {
+    background: linear-gradient(
+      to bottom,
+      rgba(255,255,255,0),
+      rgba(255,255,255,0) 50%,
+      rgba(0,0,0,0.2) 50%,
+      rgba(0,0,0,0.2)
+    );
+    background-size: 100% 4px;
+    position: fixed;
+    pointer-events: none;
+    inset: 0;
+    z-index: 50;
+    opacity: 0.15;
+  }
+}
+
+/* Custom Scrollbar for Chrome/Safari/Webkit */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background)); 
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted)); 
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary)); 
+}
